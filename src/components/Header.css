@@ -1,0 +1,89 @@
+.header__form {
+  position: absolute;
+  margin-top: 16px;
+  top: 0;
+  height: 48px;
+  width: 90vw;
+  max-width: 379px;
+  display: flex;
+  background-color: white;
+}
+
+.header__search {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  border: 2px solid rgba(56, 52, 52, 0.02);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all ease-in 0.3s;
+}
+
+.searchOnFocus {
+  border: 2px solid #ff9500;
+  transition: all ease-in 0.4s;
+}
+
+.header__searchIcon {
+  height: 100%;
+  margin-left: 22px;
+  margin-right: 18px;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: gray;
+}
+
+.header__searchInput {
+  display: flex;
+  flex: 1;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  color: #4a4a4a;
+  background-color: white;
+}
+
+.header__searchInput:focus {
+  outline: none;
+}
+
+.header__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  height: 100%;
+  width: 90px;
+  color: #4a4a4a;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  margin-left: 12px;
+  margin-top: 2px;
+  transition: all ease-in-out 0.4s;
+}
+
+.header__blurWindow {
+  position: absolute;
+  top: 60px;
+  height: 89vh;
+  width: 90vw;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+@media only screen and (min-width: 570px) {
+  .header__blurWindow {
+    left: -100px;
+    width: 50vw;
+    padding: 0;
+  }
+}

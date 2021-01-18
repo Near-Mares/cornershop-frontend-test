@@ -1,0 +1,72 @@
+.shareContainer {
+  position: absolute;
+  display: flex;
+  top: 75vh;
+  height: 121px;
+  max-height: 121px;
+  width: 309px;
+  max-width: 309px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 24px 38px rgba(0, 0, 0, 0.14);
+  border-radius: 10px;
+  background-color: #fafafa;
+  z-index: 900;
+}
+
+.hidden {
+  display: none;
+}
+
+.containerLeft {
+  display: flex;
+  width: 0.7;
+  flex-direction: column;
+}
+
+.containerLeft > p {
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
+  margin-left: 18px;
+  margin-top: 13px;
+}
+
+.containerLeft__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  height: 40px;
+  width: 100px;
+  color: #ff9500;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-left: 18px;
+  margin-top: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.containerLeft__button:hover {
+  cursor: pointer;
+}
+
+.containerRight {
+  display: flex;
+  flex: 0.3;
+  flex-direction: column;
+  margin-top: 10px;
+  font-size: 10px;
+  color: black;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.containerRight > p {
+  width: 75px;
+  margin-left: 10px;
+  font-size: 8px;
+  font-weight: 600;
+  overflow-x: hidden;
+}

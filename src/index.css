@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+App {
+  display: flex;
+  justify-items: center;
+}

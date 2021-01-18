@@ -1,0 +1,54 @@
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 12px;
+  color: black;
+  background-color: white;
+}
+
+.counter__title {
+  width: 200px;
+  font-size: 14px;
+  font-weight: 400;
+  overflow-y: hidden;
+}
+
+.counter__count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
+  background-color: transparent;
+}
+
+.counter__count > button {
+  color: #ff9500;
+  font-size: 30px;
+  font-weight: 400;
+  border: none;
+  background-color: transparent;
+}
+
+.counter__count > button:focus {
+  border: none;
+  outline: none;
+}
+
+.counter__count > h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.selected {
+  background-color: #ff950027;
+}
+
+.selectedContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  transition: all ease-in-out 0.3s;
+}

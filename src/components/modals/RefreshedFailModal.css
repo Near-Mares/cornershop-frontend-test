@@ -1,0 +1,40 @@
+.mainScreen__empty {
+  position: absolute;
+  top: 75px;
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.mainScreen__empty > h3 {
+  margin-bottom: 20px;
+  color: black;
+}
+
+.mainScreen__empty > p {
+  margin: 0 50px 0 50px;
+  color: #4a4a4a;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mainScreen__empty > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  height: 40px;
+  width: 100px;
+  color: #ff9500;
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-left: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}

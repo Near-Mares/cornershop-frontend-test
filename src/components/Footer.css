@@ -1,0 +1,72 @@
+.mainScreen__footer {
+  position: absolute;
+  bottom: 0;
+  height: 71px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.mainScreen__footerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  height: 41px;
+  width: 74px;
+  color: white;
+  background-color: #ff9500;
+  border: none;
+  border-radius: 8px;
+  font-size: 40px;
+  margin-right: 16px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.plusSign {
+  margin-right: 0px;
+}
+
+.mainScreen__footerButton:focus {
+  outline: none;
+  cursor: pointer;
+}
+
+.mainScreen__footerButton {
+  cursor: pointer;
+}
+
+.footer__buttonWraper {
+  display: flex;
+  flex: 1;
+}
+
+.mainScreen__footerButtonTrash {
+  transition: all ease-in-out 0.5s;
+}
+
+.mainScreen__footerButtonShare {
+  transition: all ease-in-out 0.5s;
+}
+
+@media only screen and (min-width: 570px) {
+  .mainScreen__footer {
+    width: 100vw;
+  }
+
+  .plusSign {
+    position: absolute;
+    left: calc(95vw * 2 / 3);
+  }
+
+  .footer__buttonWraper {
+    position: absolute;
+    left: calc(90vw * 1 / 3);
+  }
+}
