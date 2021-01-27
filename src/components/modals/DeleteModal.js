@@ -7,7 +7,6 @@ import {handleModal, deselectedCounter, refreshCounters} from '../../redux/actio
 function DeleteModal() {
 
 	const dispatch =  useDispatch()	
-	//const modalOpener = useSelector( state => state.handleModal	)
 	const selectedCounters = useSelector( state => state.selectedCounters )
 
 	const deleteCounters = () => {
@@ -18,12 +17,10 @@ function DeleteModal() {
 				body: JSON.stringify({ id: counter.id })})
 				.then(res => res.json())
 				.then(res => {
-					console.log(`counter deleted is "${res}"`)
 					dispatch(refreshCounters(true))
 					dispatch(deselectedCounter({ id: counter.id }))
 				})
 				.catch(err => {
-					console.log(err)
 					dispatch(handleModal({type: 'deleteFail', isOpen: true}))
 				})
 		})

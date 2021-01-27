@@ -17,11 +17,9 @@ function UpdateFailModal() {
 				body: JSON.stringify({ id: id })})
 				.then(res => res.json())
 				.then(res => {
-					console.log(`${res.id} incremented by one`)
 					dispatch(refreshCounters(true))
 				})
 				.catch(err => {
-					console.log(err)
 					dispatch(handleModal({type: 'updateFail',isOpen: true}))
 				})
 		} else if (type !=='add' & count > 0 ) {
@@ -31,11 +29,9 @@ function UpdateFailModal() {
 				body: JSON.stringify({ id: id })})
 				.then(res => res.json())
 				.then(res => {
-					console.log(`${res.id} decremented by one`)
 					dispatch(refreshCounters(true))
 				})
 				.catch(err => {
-					console.log(err)
 					dispatch(handleModal({type: 'updateFail',isOpen: true}))
 				})
 		} else if (count === 0) {

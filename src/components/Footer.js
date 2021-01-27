@@ -3,11 +3,8 @@ import './Footer.css';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { newCounter, handleModal } from '../redux/actions/index';
-import SharePopoverModal from './modals/SharePopoverModal';
-
 
 function Footer() {
-
 	const countersSelected = useSelector( state => state.selectedCounters )
 	const modal = useSelector( state => state.handleModal)
 	const dispatch = useDispatch()

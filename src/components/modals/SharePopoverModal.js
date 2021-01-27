@@ -12,6 +12,7 @@ function SharePopoverModal() {
 		selected.length === 0 && (
 			dispatch(handleModal({type:'share',isOpen: false}))
 		)
+		// eslint-disable-next-line
 	}, [selected]);
 
 	return (
@@ -37,7 +38,7 @@ function SharePopoverModal() {
 		<div className='containerRight'>
 			{
 				selected.map( counter => (
-					<p>
+					<p key={counter.id}>
 						{`${counter.count} x ${counter.title}`}
 					<br></br></p>
 				))

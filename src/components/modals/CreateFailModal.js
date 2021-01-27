@@ -8,7 +8,6 @@ function CreateFailModal() {
 
 	const dispatch =  useDispatch()	
 	
-
 	return (
 		<div className= 'modal'>
 			<div className='modal__card'>

@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import './Header.css';
-
 import SearchIcon from '@material-ui/icons/Search';
 //redux
 import {useDispatch} from 'react-redux';
 import { searchCounter } from '../redux/actions/index'
-  
 
 function Header() {
-
   const [ focus, setFocus] = useState(false)
   const [ text, setText ] = useState('')
 
@@ -55,7 +52,6 @@ function Header() {
           onClick= {() => {
             setText('');
             dispatch(searchCounter(''));
-            console.log('cancel')
           }}
         >
           Cancel

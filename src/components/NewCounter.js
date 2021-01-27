@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React,{ useState } from 'react';
 import './NewCounter.css';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -62,7 +62,7 @@ function NewCounter() {
 										handleExamples(e)
 									}}
 								>
-									<i class='bx bx-x bx-sm'></i>
+									<i className='bx bx-x bx-sm'></i>
 								</button>
 							</div>
 							<div className='card__headerTitle'>Examples</div>
@@ -74,7 +74,7 @@ function NewCounter() {
 								className='card__headerIconX'
 								onClick={() => dispatch(newCounter(false))}
 								>
-									<i class='bx bx-x bx-sm'></i>
+									<i className='bx bx-x bx-sm'></i>
 								</button>
 							</div>
 							<div className='card__headerTitle'>Create Counter</div>
@@ -94,9 +94,9 @@ function NewCounter() {
 								createAnimation === true ? (
 									<div className='create__refreshing'>
 										<div className='create__refreshingIcon'>
-										<i class='bx bxs-circle bx-tada outer' style={{color: 'rgba(255,149,0,0.2)'}}></i>
-										<i class='bx bxs-circle bx-burst center' style={{color:'rgba(255,149,0,0.44)'}}></i>
-										<i class='bx bxs-circle bx-tada inner' style={{color:'#ff9500'}}></i>
+										<i className='bx bxs-circle bx-tada outer' style={{color: 'rgba(255,149,0,0.2)'}}></i>
+										<i className='bx bxs-circle bx-burst center' style={{color:'rgba(255,149,0,0.44)'}}></i>
+										<i className='bx bxs-circle bx-tada inner' style={{color:'#ff9500'}}></i>
 										</div>
 									</div>
 								) : null
@@ -135,10 +135,11 @@ function NewCounter() {
 
 								<div className='card__examplesOptions'>
 									{
-										exampleOptions[0].map( drink => (
+										exampleOptions[0].map( (drink, i) => (
 											<button
 												className='card__examplesOption'
 												onClick={(e) => handleExamples(e)}
+												key={`0${i}`}
 											>
 												{drink}
 											</button>
@@ -152,10 +153,11 @@ function NewCounter() {
 
 								<div className='card__examplesOptions'>
 									{
-										exampleOptions[1].map( food => (
+										exampleOptions[1].map( (food, i) => (
 											<button
 												className='card__examplesOption'
 												onClick={(e) => handleExamples(e)}
+												key={`1${i}`}
 											>
 												{food}
 											</button>
@@ -169,10 +171,11 @@ function NewCounter() {
 
 								<div className='card__examplesOptions'>
 								{
-										exampleOptions[2].map( misc => (
+										exampleOptions[2].map( (misc, i) => (
 												<button
 													className='card__examplesOption'
 													onClick={(e) => handleExamples(e)}
+													key={`2${i}`}
 												>
 													{misc}
 												</button>

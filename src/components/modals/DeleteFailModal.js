@@ -18,7 +18,6 @@ function DeleteModal() {
 				body: JSON.stringify({ id: counter.id })})
 				.then(res => res.json())
 				.then(res => {
-					console.log(`counter deleted is "${res}"`)
 					dispatch(refreshCounters(true))
 					dispatch(deselectedCounter({ id: counter.id }))
 				})

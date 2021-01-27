@@ -12,7 +12,7 @@ import UpdateFailModal from '../components/modals/UpdateFailModal';
 import RefreshedFailModal from '../components/modals/RefreshedFailModal';
 //REDUX
 import { useSelector, useDispatch } from 'react-redux';
-import { refreshCounters, newCounter,handleModal } from '../redux/actions/index';
+import { refreshCounters, newCounter, handleModal } from '../redux/actions/index';
 import SharePopoverModal from '../components/modals/SharePopoverModal';
 
 
@@ -63,10 +63,12 @@ function MainScreen() {
       fetchCounters()
     }    
     dispatch(refreshCounters(false))
+    // eslint-disable-next-line
   }, [refresh])
 
   useEffect(() => {
    setRefreshCount( refreshCount + 1)
+   // eslint-disable-next-line
   }, [searchText])
   
   //when receiving a new counter from the new counter window
@@ -74,6 +76,7 @@ function MainScreen() {
     setCounters([...counters, receiveNewCounter])
     dispatch(newCounter(false))
     fetchCounters()
+    // eslint-disable-next-line
   }, [receiveNewCounter]);
 
   useEffect(() => {
@@ -88,6 +91,7 @@ function MainScreen() {
       setCounters( allCounters.filter( counter => {
         return counter.title.toLowerCase().includes(searchText.toLowerCase())
       })))
+      // eslint-disable-next-line
   }, [searchText])
 
   //Modals logic
@@ -109,9 +113,9 @@ function MainScreen() {
         welcomeAnimation === true ? (
           <div className='mainScreen__refreshing'>
             <div className='mainScreen__refreshingIcon'>
-              <i class='bx bxs-circle bx-tada outer' style={{color: 'rgba(255,149,0,0.2)'}}></i>
-              <i class='bx bxs-circle bx-burst center' style={{color:'rgba(255,149,0,0.44)'}}></i>
-              <i class='bx bxs-circle bx-tada inner' style={{color:'#ff9500'}}></i>
+              <i className='bx bxs-circle bx-tada outer' style={{color: 'rgba(255,149,0,0.2)'}}></i>
+              <i className='bx bxs-circle bx-burst center' style={{color:'rgba(255,149,0,0.44)'}}></i>
+              <i className='bx bxs-circle bx-tada inner' style={{color:'#ff9500'}}></i>
             </div>
           </div>
         ) : null
@@ -138,13 +142,13 @@ function MainScreen() {
             {
               animation === true ? (
                 <div style={{display:'flex'}}>
-                  <i class='bx bx-revision bx-spin' style={{color:'#ff9500', fontSize: '17px'}} ></i>
+                  <i className='bx bx-revision bx-spin' style={{color:'#ff9500', fontSize: '17px'}} ></i>
                   &nbsp; 
                   <p style={{color:'#ff9500'}}>refreshing...</p>
                 </div>
               ):(
                 <i 
-                class='bx bx-revision bx-xs'
+                className='bx bx-revision bx-xs'
                 onClick={() => {
                   dispatch(refreshCounters(true))
                   setAnimation(true)
