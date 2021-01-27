@@ -38,6 +38,8 @@ function UpdateFailModal() {
 					console.log(err)
 					dispatch(handleModal({type: 'updateFail',isOpen: true}))
 				})
+		} else if (count === 0) {
+			dispatch(handleModal({type: 'updateFail', isOpen: true}))
 		}
 	}
 
@@ -53,7 +55,6 @@ function UpdateFailModal() {
 						className='modal__buttonRetry'
 						onClick={() => 	{
 							retryOperation()
-							dispatch(handleModal({}))
 						}}
 						>
 							Retry

@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './SharePopoverModal.css';
 //redux
-import { useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {handleModal} from '../../redux/actions/index';
 
 function SharePopoverModal() {
+	const dispatch =  useDispatch();
+	const selected = useSelector( state => state.selectedCounters);
 
-	const dispatch =  useDispatch()	
-
-	const selected = useSelector( state => state.selectedCounters)
-	const modal = useSelector( state => state.handleModal)
+	useEffect(() => {
+		selected.length === 0 && (
+			dispatch(handleModal({type:'share',isOpen: false}))
+		)
+	}, [selected]);
 
 	return (
 		<div className={`shareContainer ${selected.length === 0 && 'hidden'}`}>

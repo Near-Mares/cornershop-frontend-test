@@ -17,7 +17,6 @@ import SharePopoverModal from '../components/modals/SharePopoverModal';
 
 
 function MainScreen() {
-
   //result from api petition - static
   const [ allCounters , setAllCounters ] = useState([])
   //dinamic
@@ -30,7 +29,8 @@ function MainScreen() {
   const searchText = useSelector( state => state.counter);
   const refresh =  useSelector( state => state.refreshCounters);
   const receiveNewCounter =  useSelector( state => state.sendNewCounter);
-  const modal =  useSelector( state => state.handleModal)
+  const modal =  useSelector( state => state.handleModal);
+  const selected =  useSelector( state => state.selectedCounters)
   const dispatch = useDispatch();
 
   //fetching the counters
@@ -38,10 +38,8 @@ function MainScreen() {
     fetch('/api/v1/counter', { method: 'get' })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       setAllCounters(res)
       setCounters(res)
-      console.log(counters)
       setRefreshCount(refreshCount + 1)
       if( modal.type === 'refreshFail') {
         dispatch(handleModal({ type: 'refreshedFail', isOpen: false}))
@@ -50,7 +48,6 @@ function MainScreen() {
       setTimeout(() => setWelcomeAnimation(false), 1000)
     }) 
     .catch( err => {
-      console.log(err)
       setTimeout(() => setAnimation(false), 1000)
       setTimeout(() => setWelcomeAnimation(false), 1000)
       dispatch(handleModal({ type: 'refreshedFail', isOpen: true}))
@@ -61,18 +58,19 @@ function MainScreen() {
 
   //refreshing the counters list
   useEffect(() => {
-    console.log('counters list is refreshing')
     setAnimation(true)
     if( refresh === true ) {
       fetchCounters()
-      console.log(refreshCount)
     }    
     dispatch(refreshCounters(false))
   }, [refresh])
+
+  useEffect(() => {
+   setRefreshCount( refreshCount + 1)
+  }, [searchText])
   
   //when receiving a new counter from the new counter window
   useEffect(() => {
-    console.log(`new counter received ${receiveNewCounter.title}`)
     setCounters([...counters, receiveNewCounter])
     dispatch(newCounter(false))
     fetchCounters()
@@ -84,7 +82,6 @@ function MainScreen() {
 
   //Searching counters logic
   useEffect(() => {
-    console.log('searched')
     searchText === '' ? (
       setCounters(allCounters)  
     ):(
@@ -92,22 +89,22 @@ function MainScreen() {
         return counter.title.toLowerCase().includes(searchText.toLowerCase())
       })))
   }, [searchText])
+
+  //Modals logic
+  const renderModal = () => (
+    modal.type === 'delete' & modal.isOpen === true ? <DeleteModal /> :
+    modal.type === 'refreshedFail' & modal.isOpen === true ? <RefreshedFailModal /> : 
+    modal.type === 'createFail' & modal.isOpen === true ? <CreateFailModal /> :
+    modal.type === 'deleteFail' & modal.isOpen === true ? <DeleteFailModal /> :
+    modal.type === 'updateFail' & modal.isOpen === true ? <UpdateFailModal /> :
+    modal.type === 'share' & modal.isOpen === true ? <SharePopoverModal />: null
+  )
   
-
-
   return (
   	<div className='mainScreen'>
 
-      {
-      /*Modals*/
-        modal.type === 'delete' & modal.isOpen === true ? <DeleteModal /> :
-        modal.type === 'refreshedFail' & modal.isOpen === true ? <RefreshedFailModal /> : 
-        modal.type === 'createFail' & modal.isOpen === true ? <CreateFailModal /> :
-        modal.type === 'deleteFail' & modal.isOpen === true ? <DeleteFailModal /> :
-        modal.type === 'updateFail' & modal.isOpen === true ? <UpdateFailModal /> :
-        modal.type === 'share' & modal.isOpen === true ? <SharePopoverModal />: null
-      }
-			
+      { renderModal() }
+
       {
         welcomeAnimation === true ? (
           <div className='mainScreen__refreshing'>
@@ -120,14 +117,24 @@ function MainScreen() {
         ) : null
       }
 
-
 			<Header />
 
       { allCounters.length !== 0  ? (
         <div className='counterContainer'>
           <div className='counterContainer_update'>
-            {allCounters?.length}
-            &nbsp;Items &nbsp;<span> {refreshCount} times </span>&nbsp; 
+            {
+              selected.length !== 0 ? (
+                <p style={{color :"#ff9500"}}
+                >
+                  {selected.length} Selected &nbsp;
+                </p>
+              ):(
+                <p>{allCounters?.length}&nbsp;Items &nbsp;
+                <span> {refreshCount} times </span>&nbsp; 
+                </p>
+              )
+            }
+            
             {
               animation === true ? (
                 <div style={{display:'flex'}}>
@@ -181,7 +188,7 @@ function MainScreen() {
       
       <Footer />
     </div>
-)
+  )
 }
 
 export default MainScreen

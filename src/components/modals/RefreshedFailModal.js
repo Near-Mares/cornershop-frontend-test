@@ -1,13 +1,11 @@
 import React from 'react'
 import './RefreshedFailModal.css';
 //redux
-import {useSelector, useDispatch} from 'react-redux';
-import {handleModal, deselectedCounter, refreshCounters} from '../../redux/actions/index';
+import {useDispatch} from 'react-redux';
+import {handleModal, refreshCounters} from '../../redux/actions/index';
 
 function RefreshedFailModal() {
-
 	const dispatch =  useDispatch()	
-	//const modalOpener = useSelector( state => state.handleModal	)
 
 	return (
 		<div className='mainScreen__empty' style={{zIndex: 2}}>

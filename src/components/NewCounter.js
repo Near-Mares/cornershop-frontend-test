@@ -20,38 +20,33 @@ function NewCounter() {
 		['Times sneezed', 'Naps', 'Day dreaming', 'Clothes bought', 'Favors done']
 	]
 
-	console.log(exampleOptions)
 	//closes examples and sets input value selected
 	const handleExamples = e => {
 		setExamples(!examples)
 		setCounterTitle(e.target.innerText)
-		console.log(`the examples are hidden ${examples}`)
 	}
 
 	//dispatches the server response when postin new counter
 	const handleSubmit = e => {
 		e.preventDefault()
-		setCreateAnimation(true)
-		fetch('/api/v1/counter', {
-			method: 'post',
-			headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-			body: JSON.stringify({ title: counterTitle })})
-			.then(res => res.json())
-			.then(res => {
-				console.log(res)
-				res.title && dispatch(sendNewCounter(res))
-				setTimeout(setCreateAnimation(false), 1000)
-				setCounterTitle('')
-			})
-			.catch(err => {
-				console.log(err)
-				setCreateAnimation(false)
-				dispatch(handleModal({type: 'createFail', isOpen: true}))
-			})
+		if( counterTitle.trim()!== '') {
+			setCreateAnimation(true)
+			fetch('/api/v1/counter', {
+				method: 'post',
+				headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+				body: JSON.stringify({ title: counterTitle })})
+				.then(res => res.json())
+				.then(res => {
+					res.title && dispatch(sendNewCounter(res))
+					setTimeout(setCreateAnimation(false), 1000)
+					setCounterTitle('')
+				})
+				.catch(err => {
+					setCreateAnimation(false)
+					dispatch(handleModal({type: 'createFail', isOpen: true}))
+				})
+		}
 	}
-
-
-
 
 	return (
 		<div className={shown === true ? 'container' : 'container__hidden'}>

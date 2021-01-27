@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import './Counter.css';
-import { useSelector, useDispatch } from 'react-redux';
-import {selectedCounter, deselectedCounter, refreshCounters, operation, handleModal} from '../redux/actions/index';
-
-
+import { useDispatch } from 'react-redux';
+import {
+	selectedCounter,
+	deselectedCounter,
+	refreshCounters,
+	operation,
+	handleModal
+} from '../redux/actions/index';
 
 function Counter({counter}) {
 	const dispatch = useDispatch();
 	const { title, count, id } = counter
-	//numCount is a parallel state count
-	const [ numCount, setNumCount ] = useState( count )
 	const [ isSelected, setIsSelected ] = useState(false)
 	const [ disabled, setDisabled ] = useState(false)
 
@@ -20,9 +22,7 @@ function Counter({counter}) {
 			body: JSON.stringify({ id: id })})
 			.then(res => res.json())
 			.then(res => {
-				console.log(`${res.id} incremented by one`)
 				dispatch(refreshCounters(true))
-				setNumCount(count)
 			})
 			.catch(err => {
 				console.log(err)
@@ -32,7 +32,7 @@ function Counter({counter}) {
 		
 	const substractCount = () => {
 		if( count <= 0 || disabled === true) {
-		console.log('number cannot be decremented yet')
+			dispatch(handleModal({type: 'updateFail', isOpen: true}))
 		return 
 		} else {
 			fetch('/api/v1/counter/dec', {
@@ -41,13 +41,10 @@ function Counter({counter}) {
 				body: JSON.stringify({ id: id })})
 				.then(res => res.json())
 				.then(res => {
-					console.log(`${res.id} decremented by one`)
 					dispatch(refreshCounters(true))
-					setNumCount(count)
 					setDisabled(false)
 				})
 				.catch(err => {
-					console.log(err)
 					dispatch(handleModal({type: 'updateFail', isOpen: true}))
 				})
 		}
@@ -59,10 +56,8 @@ function Counter({counter}) {
 		setIsSelected(!isSelected)
 		if( isSelected === false ) {
 			dispatch(selectedCounter({id: id, title: title, count: count}))
-			console.log(`selected item id is ${id}`)
 		} else {
 			dispatch(deselectedCounter({id: id, title: title, count: count}))
-			console.log(`deselected item id is ${id}`)
 		}
 	}
 
@@ -83,7 +78,6 @@ function Counter({counter}) {
 					<button
 						disabled={`${disabled===true ? 'disabled' : ''}`}
 						onClick={() => {
-							//setDisabled(true)
 							dispatch(operation({title:title, count: count, id: id, type: 'substract'}))
 							substractCount()
 						}}
